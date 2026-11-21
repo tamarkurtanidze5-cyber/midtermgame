@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khinkali House | Storm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app">
+
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-icon">✦</span>
+                <span>GEORGIAN KITCHEN</span>
+            </div>
+            <div class="edition">THE ARCADE EDITION · № 01</div>
+        </header>
+
+        <section class="hero">
+            <p class="eyebrow">A TASTE OF GEORGIA</p>
+            <h1>KHINKALI <span>STORM</span></h1>
+            <p class="subtitle">
+                Catch the classics. Avoid the heat. Become the master.
+            </p>
+        </section>
+
+        <section class="game-card">
+
+            <div id="menu" class="screen">
+                <div class="ornament">✧ ───── ✧ ───── ✧</div>
+                <p class="eyebrow">WELCOME TO THE SUPRA</p>
+                <h2>Your table awaits.</h2>
+                <p class="description">
+                    Catch delicious khinkali, collect golden dumplings
+                    and stay away from the fiery peppers!
+                </p>
+
+                <input
+                    type="text"
+                    id="playerName"
+                    placeholder="Enter your name"
+                    maxlength="30"
+                >
+
+                <button id="startBtn" class="primary-btn">
+                    START THE FEAST <span>→</span>
+                </button>
+
+                <div class="personal-best">
+                    <span>YOUR PERSONAL BEST</span>
+                    <strong id="bestScore">0</strong>
+                </div>
+            </div>
+
+            <div id="gameScreen" class="screen hidden">
+
+                <div class="hud">
+                    <div class="hud-item">
+                        <small>YOUR SCORE</small>
+                        <strong id="score">0</strong>
+                    </div>
+
+                    <div class="hud-item">
+                        <small>HEARTS</small>
+                        <strong id="lives">3</strong>
+                    </div>
+
+                    <div class="hud-item">
+                        <small>LEVEL</small>
+                        <strong id="level">1</strong>
+                    </div>
+                </div>
+
+                <canvas id="gameCanvas" width="700" height="500"></canvas>
+
+                <div class="game-controls">
+                    <span>← → MOVE</span>
+                    <span>OR</span>
+                    <span>A / D MOVE</span>
+                </div>
+
+            </div>
+
+            <div id="gameOver" class="screen hidden">
+                <div class="ornament">✧ ───── ✧ ───── ✧</div>
+                <p class="eyebrow">THE FEAST IS OVER</p>
+                <h2>What a delicious run!</h2>
+
+                <div class="final-score">
+                    <small>YOUR FINAL SCORE</small>
+                    <strong id="finalScore">0</strong>
+                </div>
+
+                <button id="restartBtn" class="primary-btn">
+                    PLAY AGAIN <span>→</span>
+                </button>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>MADE WITH ♥ IN GEORGIA</p>
+            <p>KHINKALI · FRIENDSHIP · TRADITION</p>
+        </footer>
+
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
