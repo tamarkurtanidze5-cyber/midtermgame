@@ -1,0 +1,23 @@
+
+services:
+  game:
+    build: ./game
+    container_name: khinkali-game
+    ports:
+      - "8080:80"
+    networks:
+      - khinkali-net
+
+  leaderboard:
+    build: ./leaderboard
+    container_name: khinkali-leaderboard
+    volumes:
+      - leaderboard-data:/data
+    networks:
+      - khinkali-net
+
+networks:
+  khinkali-net:
+
+volumes:
+  leaderboard-data:

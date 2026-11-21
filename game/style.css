@@ -21,9 +21,7 @@ body {
     padding: 30px 16px;
     color: var(--cream);
     font-family: 'DM Sans', sans-serif;
-
     background-color: var(--deep-wine);
-
     background-image:
         radial-gradient(ellipse at 50% 0%, #713342 0%, transparent 55%),
         repeating-linear-gradient(
@@ -222,6 +220,62 @@ input:focus {
     color: var(--wine);
 }
 
+/* Leaderboard online/offline status */
+.leaderboard-status {
+    width: fit-content;
+    margin: 15px auto 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #f8d7da;
+    color: #721c24;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Leaderboard design */
+.leaderboard {
+    width: min(100%, 380px);
+    margin: 30px auto 0;
+    padding: 20px;
+    background: #f5ead8;
+    border: 1px solid #ddc49e;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.leaderboard h3 {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddc49e;
+    color: var(--wine);
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    text-align: center;
+}
+
+.leaderboard ol {
+    padding-left: 28px;
+}
+
+.leaderboard li {
+    padding: 8px 5px;
+    border-bottom: 1px solid rgba(70,25,35,0.1);
+    color: #684c3d;
+    font-size: 13px;
+}
+
+.leaderboard li:last-child {
+    border-bottom: none;
+}
+
+.leaderboard p {
+    color: #816c5c;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
 .hud {
     display: flex;
     justify-content: space-around;
@@ -312,5 +366,9 @@ footer {
     .game-controls {
         gap: 8px;
         font-size: 8px;
+    }
+
+    .leaderboard {
+        padding: 15px;
     }
 }
