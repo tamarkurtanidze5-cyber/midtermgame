@@ -19,6 +19,10 @@
             <div class="edition">THE ARCADE EDITION · № 01</div>
         </header>
 
+        <div id="leaderboardStatus" class="leaderboard-status">
+            Checking leaderboard...
+        </div>
+
         <section class="hero">
             <p class="eyebrow">A TASTE OF GEORGIA</p>
             <h1>KHINKALI <span>STORM</span></h1>
@@ -29,6 +33,7 @@
 
         <section class="game-card">
 
+            <!-- MAIN MENU -->
             <div id="menu" class="screen">
                 <div class="ornament">✧ ───── ✧ ───── ✧</div>
                 <p class="eyebrow">WELCOME TO THE SUPRA</p>
@@ -53,8 +58,11 @@
                     <span>YOUR PERSONAL BEST</span>
                     <strong id="bestScore">0</strong>
                 </div>
+
+                <div id="leaderboard" class="leaderboard"></div>
             </div>
 
+            <!-- GAME SCREEN -->
             <div id="gameScreen" class="screen hidden">
 
                 <div class="hud">
@@ -84,6 +92,7 @@
 
             </div>
 
+            <!-- GAME OVER SCREEN -->
             <div id="gameOver" class="screen hidden">
                 <div class="ornament">✧ ───── ✧ ───── ✧</div>
                 <p class="eyebrow">THE FEAST IS OVER</p>
@@ -97,6 +106,8 @@
                 <button id="restartBtn" class="primary-btn">
                     PLAY AGAIN <span>→</span>
                 </button>
+
+                <div id="gameOverLeaderboard" class="leaderboard"></div>
             </div>
 
         </section>

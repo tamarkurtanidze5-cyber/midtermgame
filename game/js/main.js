@@ -9,6 +9,12 @@ import {
     updateBestScore
 } from "./ui.js";
 
+import {
+    checkLeaderboardStatus,
+    getTopScores,
+    submitScore
+} from "./api.js";
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -24,6 +30,12 @@ let keys = {};
 
 let playerName = "Player";
 let lastSpawn = 0;
+
+// Check leaderboard when the page loads
+document.addEventListener("DOMContentLoaded", async () => {
+    await updateLeaderboardStatus();
+    await displayLeaderboard();
+});
 
 document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("restartBtn").addEventListener("click", startGame);
@@ -41,6 +53,60 @@ document.addEventListener("keydown", event => {
 document.addEventListener("keyup", event => {
     keys[event.key.toLowerCase()] = false;
 });
+
+// Check whether leaderboard is online
+async function updateLeaderboardStatus() {
+    const online = await checkLeaderboardStatus();
+
+    const statusElement = document.getElementById("leaderboardStatus");
+
+    if (!statusElement) return;
+
+    statusElement.textContent = online
+        ? "Leaderboard: Online"
+        : "Leaderboard: Offline";
+
+    statusElement.style.backgroundColor = online ? "#d4edda" : "#f8d7da";
+    statusElement.style.color = online ? "#155724" : "#721c24";
+}
+
+// Display top 10 scores on menu and Game Over screens
+async function displayLeaderboard() {
+    const scores = await getTopScores();
+
+    const leaderboardElements = [
+        document.getElementById("leaderboard"),
+        document.getElementById("gameOverLeaderboard")
+    ];
+
+    leaderboardElements.forEach(element => {
+        if (!element) return;
+
+        element.innerHTML = "<h3>Top 10 Players</h3>";
+
+        if (scores === null) {
+            element.innerHTML +=
+                "<p>Leaderboard temporarily unavailable</p>";
+            return;
+        }
+
+        if (scores.length === 0) {
+            element.innerHTML +=
+                "<p>No scores yet. Be the first!</p>";
+            return;
+        }
+
+        const list = document.createElement("ol");
+
+        scores.slice(0, 10).forEach(entry => {
+            const item = document.createElement("li");
+            item.textContent = `${entry.name}: ${entry.score}`;
+            list.appendChild(item);
+        });
+
+        element.appendChild(list);
+    });
+}
 
 function startGame() {
     playerName =
@@ -174,12 +240,23 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
-function endGame() {
+// Finish game and submit score
+async function endGame() {
     gameRunning = false;
 
     updateBestScore(score);
     showGameOver(score);
+
+    const result = await submitScore(playerName, score);
+
+    if (result === null) {
+        console.log("Leaderboard temporarily unavailable");
+    }
+
+    await updateLeaderboardStatus();
+    await displayLeaderboard();
 }
 
+// Load personal best
 document.getElementById("bestScore").textContent =
     localStorage.getItem("bestScore") || "0";
